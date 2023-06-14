@@ -1,14 +1,26 @@
 {
-  "name": "tesseract",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "name": "vite-project",
+  "private": true,
+  "version": "0.0.0",
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "main": "./dist/counter.umd.cjs",
+  "module": "./dist/counter.js",
+  "exports": {
+    "types": "./index.d.ts",
+    "import": "./dist/counter.js",
+    "require": "./dist/counter.umd.cjs"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "ge": "node index.js"
+  },
+  "devDependencies": {
+    "vite": "^4.3.9"
+  },
   "dependencies": {
     "domutils": "^3.1.0",
     "gm": "^1.25.0",
