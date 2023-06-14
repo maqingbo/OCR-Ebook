@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #ebook {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .iframe-container {
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
+
+    .iframe-container.active {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="ebook">
+    <div class="iframe-container active">
+      <iframe src="page1.html"></iframe>
+    </div>
+    <div class="pagination">
+      <button class="prev-page">上一页</button>
+      <button class="next-page">下一页</button>
+    </div>
+  </div>
+
+  <script>
+    // 获取所有 iframe 容器
+    const iframeContainers = document.querySelectorAll('.iframe-container');
+    // 获取翻页按钮
+    const prevButton = document.querySelector('.prev-page');
+    const nextButton = document.querySelector('.next-page');
+    // 获取当前显示的 iframe 的索引
+    let currentIndex = 0;
+
+    // 显示指定索引的 iframe
+    const showIframe = (index) => {
+      // 隐藏当前显示的 iframe
+      iframeContainers[currentIndex].classList.remove('active');
+      // 显示指定索引的 iframe
+      iframeContainers[index].classList.add('active');
+      // 更新当前索引
+      currentIndex = index;
+    };
+
+    // 上一页按钮点击事件处理函数
+    prevButton.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        showIframe(currentIndex - 1);
+      }
+    });
+
+    // 下一页按钮点击事件处理函数
+    nextButton.addEventListener('click', () => {
+      if (currentIndex < iframeContainers.length - 1) {
+        showIframe(currentIndex + 1);
+      }
+    });
+
+    // 初始化，显示第一个 iframe
+    showIframe(currentIndex);
+  </script>
+</body>
+
+</html>
